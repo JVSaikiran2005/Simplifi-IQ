@@ -15,6 +15,9 @@ class Settings(BaseSettings):
     OPENAI_MODEL: str = Field("gemini-1.5", env="OPENAI_MODEL")
     OPENAI_RETRY_COUNT: int = Field(2, env="OPENAI_RETRY_COUNT")
     OPENAI_MAX_TOKENS: int = Field(1200, env="OPENAI_MAX_TOKENS")
+    GOOGLE_SERVICE_ACCOUNT_FILE: str | None = Field(None, env="GOOGLE_SERVICE_ACCOUNT_FILE")
+    GOOGLE_SHEETS_ID: str | None = Field(None, env="GOOGLE_SHEETS_ID")
+    GOOGLE_DRIVE_FOLDER_ID: str | None = Field(None, env="GOOGLE_DRIVE_FOLDER_ID")
 
     class Config:
         env_file = ".env"

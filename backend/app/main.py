@@ -9,6 +9,7 @@ from .schemas import ApiResponse, LeadCreate, LeadStatusResponse
 from .services.ai_engine import generate_company_analysis
 from .services.email_service import send_report_email
 from .services.enrichment import enrich_company_profile
+from .services.google_service import archive_report_to_google_drive, log_lead_to_google_sheets
 from .services.pdf_generator import build_pdf
 
 
@@ -43,6 +44,9 @@ def process_lead_workflow(lead_id: int, lead: LeadCreate) -> None:
 
         if settings.email_provider == "sendgrid":
             send_report_email(lead.full_name, lead.email, lead.company_name, pdf_location)
+
+        log_lead_to_google_sheets(lead_id, {**lead.dict(), **enriched}, pdf_location, "completed")
+        archive_report_to_google_drive(pdf_location, lead_id, lead.company_name)
 
         update_lead_status(lead_id, status="completed", report_path=pdf_location)
     except Exception as exc:

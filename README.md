@@ -58,6 +58,16 @@ copy .env.example .env
 5. Set your verified sender address in `SENDGRID_FROM_EMAIL`.
 6. Optionally set `SENDGRID_REPLY_TO` to the address where you want replies to land.
 
+#### Google Sheets and Drive Setup
+1. Visit https://console.cloud.google.com and create a Google Cloud project.
+2. Enable the Google Sheets API and Google Drive API.
+3. Create a service account under IAM & Admin, then generate a JSON key.
+4. Download the JSON key and store it securely, for example `backend/credentials/service-account.json`.
+5. Set `GOOGLE_SERVICE_ACCOUNT_FILE` in `.env` to that file path.
+6. Create or open a Google Sheet and copy its spreadsheet ID into `GOOGLE_SHEETS_ID`.
+7. Create or open a Google Drive folder, then copy its folder ID into `GOOGLE_DRIVE_FOLDER_ID`.
+8. Share the Google Sheet and Drive folder with the service account email so it can write and upload files.
+
 5. Run the API server:
 
 ```bash

@@ -7,4 +7,6 @@ beautifulsoup4==4.12.2
 openai==1.9.0
 reportlab==4.0.0
 sendgrid==6.12.5
+google-api-python-client==2.86.0
+google-auth==2.24.0
 python-dotenv==1.0.0
